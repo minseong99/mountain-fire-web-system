@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>산불 예측 서비스</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            color: #dc3545;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">AI 기반 산불 예측 서비스</h1>
+        <form action="/prediction" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="longitude">경도 (Longitude)</label>
+                        <input type="number" class="form-control" id="longitude" name="longitude" step="1" min="1" max="7" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="latitude">위도 (Latitude)</label>
+                        <input type="number" class="form-control" id="latitude" name="latitude" step="1" min="1" max="7" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="month">월 (Month)</label>
+                        <select class="form-control" id="month" name="month" required>
+                            <option value="01-Jan">1월</option>
+                            <option value="02-Feb">2월</option>
+                            <option value="03-Mar">3월</option>
+                            <option value="04-Apr">4월</option>
+                            <option value="05-May">5월</option>
+                            <option value="06-Jun">6월</option>
+                            <option value="07-Jul">7월</option>
+                            <option value="08-Aug">8월</option>
+                            <option value="09-Sep">9월</option>
+                            <option value="10-Oct">10월</option>
+                            <option value="11-Nov">11월</option>
+                            <option value="12-Dec">12월</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="day">요일 (Day)</label>
+                        <select class="form-control" id="day" name="day" required>
+                            <option value="00-sun">일요일</option>
+                            <option value="01-mon">월요일</option>
+                            <option value="02-tue">화요일</option>
+                            <option value="03-wed">수요일</option>
+                            <option value="04-thu">목요일</option>
+                            <option value="05-fri">금요일</option>
+                            <option value="06-sat">토요일</option>
+                            <option value="07-hol">공휴일</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="avg_temp">평균 기온 (°C)</label>
+                        <input type="number" class="form-control" id="avg_temp" name="avg_temp" step="0.1" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="max_temp">최고 기온 (°C)</label>
+                        <input type="number" class="form-control" id="max_temp" name="max_temp" step="0.1" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="max_wind_speed">최대 풍속 (m/s)</label>
+                        <input type="number" class="form-control" id="max_wind_speed" name="max_wind_speed" step="0.1" min="0" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="avg_wind">평균 풍속 (m/s)</label>
+                        <input type="number" class="form-control" id="avg_wind" name="avg_wind" step="0.1" min="0" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger btn-lg">산불 위험도 예측하기</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
