@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>산불 예측 결과</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            color: #dc3545;
+            margin-bottom: 30px;
+        }
+        .prediction-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+        .risk-level {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .low {
+            color: green;
+        }
+        .medium {
+            color: orange;
+        }
+        .high {
+            color: red;
+        }
+        .extreme {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">산불 예측 결과</h1>
+        
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card text-center mb-4">
+                    <div class="card-header bg-danger text-white">
+                        <h4>예상 산불 면적</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="prediction-value">{{ "%.2f"|format(prediction) }} m<sup>2</sup>
+                        
+                        {% if prediction < 10 %}
+                            <p class="risk-level low">낮은 위험도</p>
+                        {% elif prediction < 50 %}
+                            <p class="risk-level medium">중간 위험도</p>
+                        {% elif prediction < 100 %}
+                            <p class="risk-level high">높은 위험도</p>
+                        {% else %}
+                            <p class="risk-level extreme">매우 높은 위험도</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h4>입력 데이터</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>경도:</strong> {{ input_data.longitude }}</p>
+                        <p><strong>위도:</strong> {{ input_data.latitude }}</p>
+                        <p><strong>월:</strong> {{ input_data.month }}</p>
+                        <p><strong>요일:</strong> {{ input_data.day }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>평균 기온:</strong> {{ input_data.avg_temp }}°C</p>
+                        <p><strong>최고 기온:</strong> {{ input_data.max_temp }}°C</p>
+                        <p><strong>최대 풍속:</strong> {{ input_data.max_wind_speed }}m/s</p>
+                        <p><strong>평균 풍속:</strong> {{ input_data.avg_wind }}m/s</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <a href="/" class="btn btn-primary btn-lg">새로운 예측하기</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
